@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dark theme color palette -->
+<resources>
+    <color name="color_primary_start">#6D28D9</color>
+    <color name="color_primary_end">#DB2777</color>
+    <color name="color_secondary_start">#F59E0B</color>
+    <color name="color_secondary_end">#FB923C</color>
+    <color name="color_teal">#14B8A6</color>
+    <color name="color_error">#F43F5E</color>
+    <color name="color_background">#121016</color>
+    <color name="color_surface">#1E1B26</color>
+    <color name="color_surface_alt">#1E1B26</color>
+    <color name="color_text_primary">#F4F2FA</color>
+    <color name="color_text_secondary">#B0ABC0</color>
+    <color name="color_difficulty_easy">#D97706</color>
+    <color name="color_difficulty_medium">#EA580C</color>
+    <color name="color_difficulty_detailed">#7C3AED</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+</resources>
