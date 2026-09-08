@@ -2,4 +2,12 @@
     <string name="app_name">ColorCraft</string>
     <string name="tagline">COLOR. DRAW. CREATE.</string>
     <string name="welcome_text">Welcome to ColorCraft</string>
+    <string name="free_drawing_label">FREE DRAWING</string>
+    <string name="start_sketching_headline">Start Sketching</string>
+    <string name="start_sketching_subtext">Express your creativity on a fresh canvas with pro brushes &amp; tools</string>
+    <string name="draw_now_button_text">Draw Now</string>
+    <string name="coloring_library_title">Coloring Library</string>
+    <string name="coloring_library_count">500+</string>
+    <string name="see_all_label">See all →</string>
+    <string name="cd_settings">Settings</string>
 </resources>

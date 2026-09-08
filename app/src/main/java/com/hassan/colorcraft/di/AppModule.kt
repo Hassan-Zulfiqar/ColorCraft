@@ -1,7 +1,10 @@
 package com.hassan.colorcraft.di
 
 import com.hassan.colorcraft.data.db.AppDatabase
+import com.hassan.colorcraft.data.repository.ColoringRepository
+import com.hassan.colorcraft.data.repository.ColoringRepositoryImpl
 import com.hassan.colorcraft.data.seed.DatabasePrepopulator
+import com.hassan.colorcraft.ui.home.HomeViewModel
 import com.hassan.colorcraft.ui.splash.SplashViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidApplication
@@ -14,5 +17,7 @@ val appModule = module {
     single { get<AppDatabase>().coloringProgressDao() }
     single { get<AppDatabase>().sketchDao() }
     single { DatabasePrepopulator() }
+    single<ColoringRepository> { ColoringRepositoryImpl(get(), get()) }
     viewModel { SplashViewModel(androidApplication(), get(), get()) }
+    viewModel { HomeViewModel(get()) }
 }
