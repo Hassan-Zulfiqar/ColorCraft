@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_primary">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/logo_background_card"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:alpha="0.25"
+        app:cardBackgroundColor="@color/color_white"
+        app:cardCornerRadius="@dimen/corner_radius_medium"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="@id/logo_background_card"
+        app:layout_constraintEnd_toEndOf="@id/logo_background_card"
+        app:layout_constraintStart_toStartOf="@id/logo_background_card"
+        app:layout_constraintTop_toTopOf="@id/logo_background_card" />
+
+    <TextView
+        android:id="@+id/app_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/app_name"
+        android:textColor="@color/color_white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/logo_background_card"
+        app:layout_constraintStart_toStartOf="@+id/logo_background_card"
+        app:layout_constraintTop_toBottomOf="@+id/logo_background_card" />
+
+    <TextView
+        android:id="@+id/tagline_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:alpha="0.85"
+        android:fontFamily="@font/inter"
+        android:letterSpacing="0.15"
+        android:text="@string/tagline"
+        android:textColor="@color/color_white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/app_name_text"
+        app:layout_constraintStart_toStartOf="@+id/app_name_text"
+        app:layout_constraintTop_toBottomOf="@+id/app_name_text" />
+
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_sm"
+        android:alpha="0.9"
+        android:fontFamily="@font/inter"
+        android:text="@string/welcome_text"
+        android:textColor="@color/color_white"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/loading_indicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/loading_indicator"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_xl"
+        android:indeterminate="true"
+        android:visibility="visible"
+        app:indicatorColor="@color/color_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:trackColor="@color/color_white"
+        app:trackCornerRadius="4dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ColorCraft</string>
+    <string name="tagline">COLOR. DRAW. CREATE.</string>
+    <string name="welcome_text">Welcome to ColorCraft</string>
 </resources>
