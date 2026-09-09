@@ -78,6 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginStart="@dimen/spacing_xs"
             android:fontFamily="@font/poppins"
             android:textColor="@color/color_text_primary"
             android:textSize="14sp"
@@ -87,18 +88,18 @@
             app:layout_constraintTop_toBottomOf="@id/difficulty_label_text"
             tools:text="Cosmic Butterfly" />
 
-        <TextView
-            android:id="@+id/coloring_subtitle_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/inter"
-            android:textColor="@color/color_text_secondary"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/coloring_title_text"
-            tools:text="Wildlife &amp; Stars" />
+<!--        <TextView-->
+<!--            android:id="@+id/coloring_subtitle_text"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:fontFamily="@font/inter"-->
+<!--            android:textColor="@color/color_text_secondary"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/coloring_title_text"-->
+<!--            tools:text="Wildlife &amp; Stars" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

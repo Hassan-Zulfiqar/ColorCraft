@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface ColoringRepository {
     fun getAllPages(): Flow<List<ColoringPageEntity>>
     fun searchPages(query: String): Flow<List<ColoringPageEntity>>
+    suspend fun getPageCount(): Int
     suspend fun getPageById(id: String): ColoringPageEntity?
     suspend fun getProgressForPage(pageId: String): ColoringProgressEntity?
     suspend fun saveProgress(progress: ColoringProgressEntity)

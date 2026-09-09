@@ -10,7 +10,7 @@
         android:id="@+id/logo_background_card"
         android:layout_width="88dp"
         android:layout_height="88dp"
-        android:alpha="0.25"
+        android:alpha="0.45"
         app:cardBackgroundColor="@color/color_white"
         app:cardCornerRadius="@dimen/corner_radius_medium"
         app:cardElevation="0dp"

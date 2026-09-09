@@ -1,10 +1,13 @@
 package com.hassan.colorcraft.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityHomeBinding
+import com.hassan.colorcraft.ui.library.LibraryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -28,14 +31,17 @@ class HomeActivity : AppCompatActivity() {
             adapter.submitList(pages)
         }
 
+        viewModel.totalPageCount.observe(this) { count ->
+            binding.coloringCountBadgeText.text = getString(R.string.home_library_count_format, count)
+        }
+
         binding.drawNowButton.setOnClickListener {
             // TODO: Phase 5 - navigate to DrawingActivity
             Toast.makeText(this, "Drawing screen coming in Phase 5", Toast.LENGTH_SHORT).show()
         }
 
         binding.seeAllText.setOnClickListener {
-            // TODO: Phase 3 - navigate to LibraryActivity
-            Toast.makeText(this, "Library screen coming in Phase 3", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, LibraryActivity::class.java))
         }
 
         binding.settingsButton.setOnClickListener {

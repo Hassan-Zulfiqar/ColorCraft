@@ -15,11 +15,17 @@ class HomeViewModel(
     private val _libraryPreview = MutableLiveData<List<ColoringPageEntity>>()
     val libraryPreview: LiveData<List<ColoringPageEntity>> = _libraryPreview
 
+    private val _totalPageCount = MutableLiveData<Int>()
+    val totalPageCount: LiveData<Int> = _totalPageCount
+
     init {
         viewModelScope.launch {
             repository.getAllPages().collect { pages ->
                 _libraryPreview.postValue(pages.take(6))
             }
+        }
+        viewModelScope.launch {
+            _totalPageCount.postValue(repository.getPageCount())
         }
     }
 }

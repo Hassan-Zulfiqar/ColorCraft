@@ -17,6 +17,9 @@ class ColoringRepositoryImpl(
     override fun searchPages(query: String): Flow<List<ColoringPageEntity>> =
         coloringPageDao.searchPages(query)
 
+    override suspend fun getPageCount(): Int =
+        coloringPageDao.getCount()
+
     override suspend fun getPageById(id: String): ColoringPageEntity? =
         coloringPageDao.getPageById(id)
 
