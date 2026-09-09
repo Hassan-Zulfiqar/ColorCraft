@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityHomeBinding
+import com.hassan.colorcraft.ui.coloring.ColoringActivity
 import com.hassan.colorcraft.ui.library.LibraryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,9 +21,8 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = HomeAdapter { _ ->
-            // TODO: Phase 4 - navigate to ColoringActivity with the tapped page's id
-            Toast.makeText(this, "Coloring screen coming in Phase 4", Toast.LENGTH_SHORT).show()
+        val adapter = HomeAdapter { page ->
+            startActivity(ColoringActivity.newIntent(this, page.id))
         }
         binding.coloringPagesRecyclerView.layoutManager = GridLayoutManager(this, 2)
         binding.coloringPagesRecyclerView.adapter = adapter

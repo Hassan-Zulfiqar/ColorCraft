@@ -21,4 +21,11 @@
     <string name="home_library_count_format">%1$d</string>
     <string name="library_subtitle_format">%1$d images</string>
     <string name="library_result_count_format">Showing %1$d of %2$d images</string>
+    <string name="cd_undo">Undo</string>
+    <string name="cd_redo">Redo</string>
+    <string name="zoom_level_default">100%</string>
+    <string name="tool_fill_label">Fill</string>
+    <string name="tool_zoom_label">Zoom</string>
+    <string name="tool_reset_label">Reset</string>
+    <string name="save_artwork_button_text">Save Artwork</string>
 </resources>

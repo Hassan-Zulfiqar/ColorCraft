@@ -133,6 +133,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
             android:text="@string/filter_easy"
+            app:checkedIconTint="@color/color_white"
             android:textColor="@color/selector_chip_text"
             app:chipBackgroundColor="@color/selector_chip_background"
             app:chipStrokeWidth="0dp" />
@@ -143,6 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
+            app:checkedIconTint="@color/color_white"
             android:text="@string/filter_medium"
             android:textColor="@color/selector_chip_text"
             app:chipBackgroundColor="@color/selector_chip_background"
@@ -154,6 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
+            app:checkedIconTint="@color/color_white"
             android:text="@string/filter_detailed"
             android:textColor="@color/selector_chip_text"
             app:chipBackgroundColor="@color/selector_chip_background"

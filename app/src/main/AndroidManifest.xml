@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
     <application
         android:name=".ColorCraftApp"
         android:allowBackup="true"
@@ -30,6 +34,9 @@
             android:name=".ui.library.LibraryActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.coloring.ColoringActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

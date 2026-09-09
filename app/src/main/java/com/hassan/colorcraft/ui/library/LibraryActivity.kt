@@ -1,12 +1,12 @@
 package com.hassan.colorcraft.ui.library
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityLibraryBinding
+import com.hassan.colorcraft.ui.coloring.ColoringActivity
 import com.hassan.colorcraft.ui.home.HomeAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,9 +20,8 @@ class LibraryActivity : AppCompatActivity() {
         binding = ActivityLibraryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = HomeAdapter { _ ->
-            // TODO: Phase 4 - navigate to ColoringActivity with the tapped page's id
-            Toast.makeText(this, "Coloring screen coming in Phase 4", Toast.LENGTH_SHORT).show()
+        val adapter = HomeAdapter { page ->
+            startActivity(ColoringActivity.newIntent(this, page.id))
         }
         binding.libraryRecyclerView.layoutManager = GridLayoutManager(this, 2)
         binding.libraryRecyclerView.adapter = adapter
