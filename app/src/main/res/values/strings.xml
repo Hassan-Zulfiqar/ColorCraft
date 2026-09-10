@@ -28,4 +28,10 @@
     <string name="tool_zoom_label">Zoom</string>
     <string name="tool_reset_label">Reset</string>
     <string name="save_artwork_button_text">Save Artwork</string>
+    <string name="color_picker_title">Choose a Color</string>
+    <string name="cd_close">Close</string>
+    <string name="luminosity_label">Luminosity</string>
+    <string name="hex_prefix">#</string>
+    <string name="hex_suffix_label">HEX</string>
+    <string name="apply_color_button_text">Apply Color</string>
 </resources>

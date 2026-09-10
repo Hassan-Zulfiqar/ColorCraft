@@ -7,14 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hassan.colorcraft.databinding.ItemColorSwatchBinding
 
 class ColorSwatchAdapter(
-    private val colors: List<Int>,
+    private var colors: List<Int>,
     private val onColorClick: (Int) -> Unit
 ) : RecyclerView.Adapter<ColorSwatchAdapter.ViewHolder>() {
 
-    private var selectedColor: Int = colors.first()
+    private var selectedColor: Int? = colors.firstOrNull()
 
     fun setSelectedColor(color: Int) {
         selectedColor = color
+        notifyDataSetChanged()
+    }
+
+    fun updateColors(newColors: List<Int>) {
+        colors = newColors
         notifyDataSetChanged()
     }
 

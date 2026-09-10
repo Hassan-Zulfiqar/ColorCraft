@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import androidx.core.content.FileProvider
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -84,7 +85,11 @@ class ColoringViewModel(
         return flattened
     }
 
-    fun saveArtwork(bitmap: Bitmap, exportToGallery: Boolean, onSaved: (Uri?) -> Unit) {
+    fun saveArtwork(
+        bitmap: Bitmap,
+        exportToGallery: Boolean,
+        onSaved: (shareableUri: Uri?, roomSaveSucceeded: Boolean, galleryExportSucceeded: Boolean) -> Unit
+    ) {
         viewModelScope.launch {
             val page = pageInfo.value
             if (page == null) {
@@ -92,7 +97,7 @@ class ColoringViewModel(
                 return@launch
             }
 
-            val galleryUri = withContext(Dispatchers.IO) {
+            val (shareableUri, roomSaveSucceeded, galleryExportSucceeded) = withContext(Dispatchers.IO) {
                 val progressDir = File(getApplication<Application>().filesDir, "coloring_progress")
                 if (!progressDir.exists()) {
                     progressDir.mkdirs()
@@ -102,15 +107,22 @@ class ColoringViewModel(
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
                 }
 
-                repository.saveProgress(
-                    ColoringProgressEntity(
-                        pageId = page.id,
-                        savedBitmapPath = progressFile.absolutePath,
-                        lastEditedAt = System.currentTimeMillis()
+                val roomSaveSucceeded = try {
+                    repository.saveProgress(
+                        ColoringProgressEntity(
+                            pageId = page.id,
+                            savedBitmapPath = progressFile.absolutePath,
+                            lastEditedAt = System.currentTimeMillis()
+                        )
                     )
-                )
+                    true
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to save progress to Room", e)
+                    false
+                }
 
-                if (exportToGallery) {
+                var galleryExportSucceeded = false
+                val galleryUri = if (exportToGallery) {
                     try {
                         val timestamp = System.currentTimeMillis()
                         val values = ContentValues().apply {
@@ -120,10 +132,12 @@ class ColoringViewModel(
                         }
                         val resolver = getApplication<Application>().contentResolver
                         val uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-                        uri?.let {
-                            resolver.openOutputStream(it)?.use { out ->
+                        val outputStream = uri?.let { resolver.openOutputStream(it) }
+                        if (uri != null && outputStream != null) {
+                            outputStream.use { out ->
                                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
                             }
+                            galleryExportSucceeded = true
                         }
                         uri
                     } catch (e: Exception) {
@@ -133,9 +147,17 @@ class ColoringViewModel(
                 } else {
                     null
                 }
+
+                val shareableUri = galleryUri ?: FileProvider.getUriForFile(
+                    getApplication<Application>(),
+                    "${getApplication<Application>().packageName}.fileprovider",
+                    progressFile
+                )
+
+                Triple(shareableUri, roomSaveSucceeded, galleryExportSucceeded)
             }
 
-            onSaved(galleryUri)
+            onSaved(shareableUri, roomSaveSucceeded, galleryExportSucceeded)
         }
     }
 

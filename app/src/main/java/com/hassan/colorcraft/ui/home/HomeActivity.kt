@@ -3,8 +3,10 @@ package com.hassan.colorcraft.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityHomeBinding
 import com.hassan.colorcraft.ui.coloring.ColoringActivity
@@ -20,6 +22,10 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        onBackPressedDispatcher.addCallback(this) {
+            handleBackPress()
+        }
 
         val adapter = HomeAdapter { page ->
             startActivity(ColoringActivity.newIntent(this, page.id))
@@ -48,5 +54,19 @@ class HomeActivity : AppCompatActivity() {
             // TODO: Phase 6 - navigate to SettingsActivity
             Toast.makeText(this, "Settings screen coming in Phase 6", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun handleBackPress() {
+        if (!isTaskRoot) {
+            finish()
+            return
+        }
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Exit ColorCraft?")
+            .setMessage("Are you sure you want to exit the app?")
+            .setPositiveButton("Exit") { _, _ -> finish() }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 }

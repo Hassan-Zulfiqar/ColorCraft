@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:paddingBottom="@dimen/spacing_lg">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:background="@drawable/shape_circle_solid"
+        android:backgroundTint="@color/color_surface_alt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/color_picker_title_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:fontFamily="@font/poppins"
+        android:text="@string/color_picker_title"
+        android:textColor="@color/color_text_primary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/close_button"
+        app:layout_constraintEnd_toStartOf="@id/close_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/close_button" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/close_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/color_surface_alt"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:contentDescription="@string/cd_close"
+            android:src="@drawable/ic_close" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.hassan.colorcraft.ui.common.HsvColorPickerView
+        android:id="@+id/hsv_color_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:background="@drawable/bg_rounded_surface_alt"
+        app:layout_constraintDimensionRatio="3:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/color_picker_title_text" />
+
+    <TextView
+        android:id="@+id/luminosity_label_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:fontFamily="@font/inter"
+        android:text="@string/luminosity_label"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hsv_color_view" />
+
+    <TextView
+        android:id="@+id/luminosity_value_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/color_text_primary"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/luminosity_label_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/luminosity_label_text"
+        tools:text="85%" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/brightness_slider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_md"
+        android:layout_marginEnd="@dimen/spacing_md"
+        android:valueFrom="0"
+        android:valueTo="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/luminosity_label_text"
+        app:thumbColor="@color/color_white"
+        app:thumbStrokeColor="@color/color_primary_start"
+        app:thumbStrokeWidth="2dp"
+        app:trackColorActive="@color/color_primary_start"
+        app:trackColorInactive="@color/color_surface_alt"
+        tools:value="85" />
+
+    <ImageView
+        android:id="@+id/current_color_preview"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:background="@drawable/shape_circle_solid"
+        android:contentDescription="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/brightness_slider" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/hex_input_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        app:boxBackgroundColor="@color/color_surface_alt"
+        app:boxCornerRadiusBottomEnd="@dimen/corner_radius_small"
+        app:boxCornerRadiusBottomStart="@dimen/corner_radius_small"
+        app:boxCornerRadiusTopEnd="@dimen/corner_radius_small"
+        app:boxCornerRadiusTopStart="@dimen/corner_radius_small"
+        app:boxStrokeWidth="0dp"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toBottomOf="@id/current_color_preview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/current_color_preview"
+        app:layout_constraintTop_toTopOf="@id/current_color_preview"
+        app:prefixText="@string/hex_prefix"
+        app:suffixText="@string/hex_suffix_label">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/hex_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter"
+            android:inputType="textCapCharacters"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:textColor="@color/color_text_primary"
+            tools:text="FB7185" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recent_colors_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/spacing_md"
+        android:paddingEnd="@dimen/spacing_md"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_color_preview"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_color_swatch" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/apply_color_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recent_colors_recycler_view">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_primary"
+            android:fontFamily="@font/inter"
+            android:gravity="center"
+            android:paddingTop="@dimen/spacing_md"
+            android:paddingBottom="@dimen/spacing_md"
+            android:text="@string/apply_color_button_text"
+            android:textColor="@color/color_white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

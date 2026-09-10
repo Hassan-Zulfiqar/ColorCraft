@@ -280,7 +280,7 @@ class ColoringCanvasView @JvmOverloads constructor(
 
     private fun performFill(x: Int, y: Int) {
         val current = bitmap ?: return
-        val filled = floodFillEngine.floodFill(current, x, y, fillColor) ?: return
+        val filled = floodFillEngine.floodFill(current, x, y, fillColor, originalBitmap = originalBitmap) ?: return
         pushUndo(current)
         bitmap = filled
         redoStack.clear()
