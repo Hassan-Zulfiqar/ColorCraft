@@ -20,6 +20,11 @@ class DrawingRepositoryImpl(
     override suspend fun updateSketch(sketch: SketchEntity) =
         sketchDao.updateSketch(sketch)
 
+    override suspend fun updateSketchTitle(sketchId: Long, title: String, updatedAt: Long) {
+        val existing = sketchDao.getSketchById(sketchId) ?: return
+        sketchDao.updateSketch(existing.copy(title = title, updatedAt = updatedAt))
+    }
+
     override suspend fun deleteSketch(sketch: SketchEntity) =
         sketchDao.deleteSketch(sketch)
 }

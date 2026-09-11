@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <files-path name="coloring_progress" path="coloring_progress/" />
+    <files-path name="sketches" path="sketches/" />
+    <files-path name="share_cache" path="share_cache/" />
 </paths>

@@ -262,6 +262,7 @@
         android:layout_height="20dp"
         android:layout_marginEnd="@dimen/spacing_md"
         android:background="@drawable/shape_circle_solid"
+        android:backgroundTint="@color/color_text_primary"
         android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="@id/brush_size_slider"
         app:layout_constraintEnd_toEndOf="parent"

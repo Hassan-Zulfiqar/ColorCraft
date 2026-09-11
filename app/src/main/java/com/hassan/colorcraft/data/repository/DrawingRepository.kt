@@ -8,5 +8,6 @@ interface DrawingRepository {
     suspend fun getSketchById(id: Long): SketchEntity?
     suspend fun insertSketch(sketch: SketchEntity): Long
     suspend fun updateSketch(sketch: SketchEntity)
+    suspend fun updateSketchTitle(sketchId: Long, title: String, updatedAt: Long)
     suspend fun deleteSketch(sketch: SketchEntity)
 }
