@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sketch_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_xs"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="@dimen/corner_radius_large"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_surface"
+        android:padding="@dimen/spacing_sm">
+
+        <ImageView
+            android:id="@+id/sketch_thumbnail_image"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="@drawable/bg_rounded_surface_alt"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sketch_title_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"
+            android:textColor="@color/color_text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sketch_thumbnail_image"
+            tools:text="Untitled Sketch 1" />
+
+        <TextView
+            android:id="@+id/sketch_date_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter"
+            android:maxLines="1"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sketch_title_text"
+            tools:text="Edited 2h ago" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

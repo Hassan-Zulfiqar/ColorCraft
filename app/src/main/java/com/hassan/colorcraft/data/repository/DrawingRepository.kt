@@ -1,28 +1,12 @@
-package com.hassan.colorcraft.data.db.dao
+package com.hassan.colorcraft.data.repository
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
 import com.hassan.colorcraft.data.db.entity.SketchEntity
 import kotlinx.coroutines.flow.Flow
 
-@Dao
-interface SketchDao {
-
-    @Query("SELECT * FROM sketches")
+interface DrawingRepository {
     fun getAllSketches(): Flow<List<SketchEntity>>
-
-    @Query("SELECT * FROM sketches WHERE id = :id")
     suspend fun getSketchById(id: Long): SketchEntity?
-
-    @Insert
     suspend fun insertSketch(sketch: SketchEntity): Long
-
-    @Update
     suspend fun updateSketch(sketch: SketchEntity)
-
-    @Delete
     suspend fun deleteSketch(sketch: SketchEntity)
 }

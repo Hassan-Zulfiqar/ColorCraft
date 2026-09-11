@@ -3,9 +3,13 @@ package com.hassan.colorcraft.di
 import com.hassan.colorcraft.data.db.AppDatabase
 import com.hassan.colorcraft.data.repository.ColoringRepository
 import com.hassan.colorcraft.data.repository.ColoringRepositoryImpl
+import com.hassan.colorcraft.data.repository.DrawingRepository
+import com.hassan.colorcraft.data.repository.DrawingRepositoryImpl
 import com.hassan.colorcraft.data.seed.DatabasePrepopulator
 import com.hassan.colorcraft.ui.coloring.ColoringViewModel
 import com.hassan.colorcraft.ui.common.ColorPickerViewModel
+import com.hassan.colorcraft.ui.drawing.DrawingGalleryViewModel
+import com.hassan.colorcraft.ui.drawing.DrawingViewModel
 import com.hassan.colorcraft.ui.home.HomeViewModel
 import com.hassan.colorcraft.ui.library.LibraryViewModel
 import com.hassan.colorcraft.ui.splash.SplashViewModel
@@ -21,9 +25,12 @@ val appModule = module {
     single { get<AppDatabase>().sketchDao() }
     single { DatabasePrepopulator() }
     single<ColoringRepository> { ColoringRepositoryImpl(get(), get()) }
+    single<DrawingRepository> { DrawingRepositoryImpl(get()) }
     viewModel { SplashViewModel(androidApplication(), get(), get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { LibraryViewModel(get()) }
     viewModel { ColoringViewModel(androidApplication(), get()) }
     viewModel { ColorPickerViewModel(androidApplication()) }
+    viewModel { DrawingViewModel(androidApplication(), get()) }
+    viewModel { DrawingGalleryViewModel(get()) }
 }

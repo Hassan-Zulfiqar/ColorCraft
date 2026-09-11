@@ -17,7 +17,7 @@ import com.hassan.colorcraft.data.db.entity.SketchEntity
         ColoringProgressEntity::class,
         SketchEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -36,7 +36,8 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "colorcraft.db"
-                ).build().also { INSTANCE = it }
+                ).fallbackToDestructiveMigration(true)
+                    .build().also { INSTANCE = it }
             }
         }
     }

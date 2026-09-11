@@ -10,6 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityHomeBinding
 import com.hassan.colorcraft.ui.coloring.ColoringActivity
+import com.hassan.colorcraft.ui.drawing.DrawingGalleryActivity
 import com.hassan.colorcraft.ui.library.LibraryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,8 +43,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         binding.drawNowButton.setOnClickListener {
-            // TODO: Phase 5 - navigate to DrawingActivity
-            Toast.makeText(this, "Drawing screen coming in Phase 5", Toast.LENGTH_SHORT).show()
+            startActivity(DrawingGalleryActivity.newIntent(this))
         }
 
         binding.seeAllText.setOnClickListener {

@@ -191,6 +191,7 @@
                         app:backgroundTint="@color/color_white"
                         android:clickable="true"
                         android:focusable="true"
+                        android:elevation="2dp"
                         app:cornerRadius="100dp"
                         app:icon="@drawable/ic_pencil"
                         app:iconGravity="textStart"

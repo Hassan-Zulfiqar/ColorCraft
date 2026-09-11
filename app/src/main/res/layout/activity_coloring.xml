@@ -166,11 +166,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/color_swatch_recycler_view">
 
-        <View
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/gradient_primary"
-            android:contentDescription="Custom color" />
+            android:padding="8dp"
+            android:contentDescription="@string/cd_open_color_picker"
+            android:src="@drawable/ic_add" />
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -34,4 +34,17 @@
     <string name="hex_prefix">#</string>
     <string name="hex_suffix_label">HEX</string>
     <string name="apply_color_button_text">Apply Color</string>
+    <string name="tool_brush_label">Brush</string>
+    <string name="tool_pencil_label">Pencil</string>
+    <string name="tool_eraser_label">Eraser</string>
+    <string name="size_label">SIZE</string>
+    <string name="cd_open_color_picker">Open color picker</string>
+    <string name="cd_clear_canvas">Clear canvas</string>
+    <string name="gallery_title">My Creations</string>
+    <string name="free_canvas_label">FREE CANVAS</string>
+    <string name="new_drawing_headline">New Drawing</string>
+    <string name="new_drawing_subtext">Start a fresh canvas</string>
+    <string name="your_drawings_title">Your Drawings</string>
+    <string name="empty_state_title">No drawings yet</string>
+    <string name="empty_state_subtitle">Tap New Drawing to get started</string>
 </resources>

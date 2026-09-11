@@ -180,7 +180,8 @@ class ColoringActivity : AppCompatActivity() {
                 saveWithGalleryExport(bitmap, onSaveFlowComplete)
             }
             .setNegativeButton("Just Save Progress") { _, _ ->
-                viewModel.saveArtwork(bitmap, false) { shareableUri, _, _ ->
+                viewModel.saveArtwork(bitmap, false) { shareableUri, roomSaveSucceeded, _ ->
+                    if (roomSaveSucceeded) isDirty = false
                     showSnackbarWithShareAction("Progress saved", shareableUri)
                     onSaveFlowComplete()
                 }

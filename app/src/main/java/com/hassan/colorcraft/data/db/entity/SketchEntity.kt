@@ -9,5 +9,6 @@ data class SketchEntity(
     val id: Long = 0,
     val filePath: String,
     val title: String,
-    val createdAt: Long
+    val createdAt: Long,
+    val updatedAt: Long
 )
