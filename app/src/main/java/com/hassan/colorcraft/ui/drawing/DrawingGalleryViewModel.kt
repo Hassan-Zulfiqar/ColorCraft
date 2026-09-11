@@ -33,6 +33,14 @@ class DrawingGalleryViewModel(
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to delete sketch file: ${sketch.filePath}", e)
             }
+            try {
+                val filesDir = File(sketch.filePath).parentFile?.parentFile
+                if (filesDir != null) {
+                    File(filesDir, "share_cache/share_${sketch.id}.png").delete()
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to delete share-cache file for sketch: ${sketch.id}", e)
+            }
         }
     }
 

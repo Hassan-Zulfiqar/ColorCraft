@@ -2,7 +2,6 @@ package com.hassan.colorcraft.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,6 +11,7 @@ import com.hassan.colorcraft.databinding.ActivityHomeBinding
 import com.hassan.colorcraft.ui.coloring.ColoringActivity
 import com.hassan.colorcraft.ui.drawing.DrawingGalleryActivity
 import com.hassan.colorcraft.ui.library.LibraryActivity
+import com.hassan.colorcraft.ui.settings.SettingsActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -51,8 +51,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         binding.settingsButton.setOnClickListener {
-            // TODO: Phase 6 - navigate to SettingsActivity
-            Toast.makeText(this, "Settings screen coming in Phase 6", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
 

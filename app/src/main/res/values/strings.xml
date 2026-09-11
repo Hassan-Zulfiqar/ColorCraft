@@ -47,4 +47,14 @@
     <string name="your_drawings_title">Your Drawings</string>
     <string name="empty_state_title">No drawings yet</string>
     <string name="empty_state_subtitle">Tap New Drawing to get started</string>
+    <string name="settings_title">Settings</string>
+    <string name="appearance_section_label">APPEARANCE</string>
+    <string name="dark_mode_label">Dark Mode</string>
+    <string name="about_section_label">ABOUT</string>
+    <string name="rate_app_label">Rate ColorCraft</string>
+    <string name="share_app_label">Share this App</string>
+    <string name="privacy_policy_label">Privacy Policy</string>
+    <string name="terms_of_use_label">Terms of Use</string>
+    <string name="app_version_label">App Version</string>
+    <string name="footer_studio_text">ColorCraft Studio</string>
 </resources>

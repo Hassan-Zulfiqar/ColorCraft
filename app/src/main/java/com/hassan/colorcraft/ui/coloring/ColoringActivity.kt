@@ -164,7 +164,7 @@ class ColoringActivity : AppCompatActivity() {
                 if (bitmap == null) {
                     finish()
                 } else {
-                    showSaveDialog(bitmap) { finish() }
+                    viewModel.saveArtwork(bitmap, exportToGallery = false) { _, _, _ -> finish() }
                 }
             }
             .setNegativeButton("Discard & Exit") { _, _ -> finish() }

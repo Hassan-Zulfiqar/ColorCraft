@@ -55,6 +55,10 @@
         <activity
             android:name=".ui.drawing.DrawingGalleryActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

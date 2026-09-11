@@ -12,6 +12,7 @@ import com.hassan.colorcraft.ui.drawing.DrawingGalleryViewModel
 import com.hassan.colorcraft.ui.drawing.DrawingViewModel
 import com.hassan.colorcraft.ui.home.HomeViewModel
 import com.hassan.colorcraft.ui.library.LibraryViewModel
+import com.hassan.colorcraft.ui.settings.SettingsViewModel
 import com.hassan.colorcraft.ui.splash.SplashViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidApplication
@@ -33,4 +34,5 @@ val appModule = module {
     viewModel { ColorPickerViewModel(androidApplication()) }
     viewModel { DrawingViewModel(androidApplication(), get()) }
     viewModel { DrawingGalleryViewModel(get()) }
+    viewModel { SettingsViewModel(androidApplication()) }
 }
