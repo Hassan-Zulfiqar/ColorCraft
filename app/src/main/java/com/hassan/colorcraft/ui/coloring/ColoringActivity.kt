@@ -15,9 +15,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityColoringBinding
+import com.hassan.colorcraft.ui.common.AppConfirmDialog
 import com.hassan.colorcraft.ui.common.ColorPickerBottomSheet
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -129,12 +130,16 @@ class ColoringActivity : AppCompatActivity() {
         binding.redoButton.setOnClickListener { canvasView.redo() }
         binding.toolZoomButton.setOnClickListener { canvasView.toggleZoom() }
         binding.toolResetButton.setOnClickListener {
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Reset Drawing?")
-                .setMessage("This will erase all your coloring on this page. This can't be undone.")
-                .setPositiveButton("Reset") { _, _ -> canvasView.resetToOriginal() }
-                .setNegativeButton("Cancel", null)
-                .show()
+            AppConfirmDialog.show(
+                context = this,
+                iconRes = R.drawable.ic_warning_dialog,
+                title = "Reset Drawing?",
+                message = "This will erase all your coloring on this page. This can't be undone.",
+                positiveText = "Cancel",
+                onPositiveClick = {},
+                destructiveText = "Reset",
+                onDestructiveClick = { canvasView.resetToOriginal() }
+            )
         }
 
         binding.openColorPickerButton.setOnClickListener {
@@ -156,37 +161,46 @@ class ColoringActivity : AppCompatActivity() {
             return
         }
 
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Unsaved Changes")
-            .setMessage("You have unsaved coloring changes. Would you like to save before leaving?")
-            .setPositiveButton("Save & Exit") { _, _ ->
+        AppConfirmDialog.show(
+            context = this,
+            iconRes = R.drawable.ic_save_dialog,
+            title = "Unsaved Changes",
+            message = "You have unsaved coloring changes. Would you like to save before leaving?",
+            positiveText = "Save & Exit",
+            onPositiveClick = {
                 val bitmap = canvasView.getCurrentBitmap()
                 if (bitmap == null) {
                     finish()
                 } else {
                     viewModel.saveArtwork(bitmap, exportToGallery = false) { _, _, _ -> finish() }
                 }
-            }
-            .setNegativeButton("Discard & Exit") { _, _ -> finish() }
-            .setNeutralButton("Cancel") { dialog, _ -> dialog.dismiss() }
-            .show()
+            },
+            negativeText = "Cancel",
+            onNegativeClick = {},
+            destructiveText = "Discard & Exit",
+            onDestructiveClick = { finish() }
+        )
     }
 
     private fun showSaveDialog(bitmap: Bitmap, onSaveFlowComplete: () -> Unit = {}) {
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Save Artwork")
-            .setMessage("Save a copy to your device's gallery, or just keep your progress inside the app?")
-            .setPositiveButton("Save to Gallery") { _, _ ->
+        AppConfirmDialog.show(
+            context = this,
+            iconRes = R.drawable.ic_save_dialog,
+            title = "Save Artwork",
+            message = "Save a copy to your device's gallery, or just keep your progress inside the app?",
+            positiveText = "Save to Gallery",
+            onPositiveClick = {
                 saveWithGalleryExport(bitmap, onSaveFlowComplete)
-            }
-            .setNegativeButton("Just Save Progress") { _, _ ->
+            },
+            negativeText = "Just Save Progress",
+            onNegativeClick = {
                 viewModel.saveArtwork(bitmap, false) { shareableUri, roomSaveSucceeded, _ ->
                     if (roomSaveSucceeded) isDirty = false
                     showSnackbarWithShareAction("Progress saved", shareableUri)
                     onSaveFlowComplete()
                 }
             }
-            .show()
+        )
     }
 
     private fun saveWithGalleryExport(bitmap: Bitmap, onComplete: () -> Unit = {}) {

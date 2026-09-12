@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityDrawingGalleryBinding
+import com.hassan.colorcraft.ui.common.AppConfirmDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DrawingGalleryActivity : AppCompatActivity() {
@@ -26,12 +27,16 @@ class DrawingGalleryActivity : AppCompatActivity() {
                 startActivity(DrawingActivity.newIntent(this, sketch.id))
             },
             onItemLongClick = { sketch ->
-                MaterialAlertDialogBuilder(this)
-                    .setTitle("Delete Drawing?")
-                    .setMessage("This will permanently delete this drawing. This can't be undone.")
-                    .setPositiveButton("Delete") { _, _ -> viewModel.deleteSketch(sketch) }
-                    .setNegativeButton("Cancel", null)
-                    .show()
+                AppConfirmDialog.show(
+                    context = this,
+                    iconRes = R.drawable.ic_trash,
+                    title = "Delete Drawing?",
+                    message = "This will permanently delete this drawing. This can't be undone.",
+                    positiveText = "Cancel",
+                    onPositiveClick = {},
+                    destructiveText = "Delete",
+                    onDestructiveClick = { viewModel.deleteSketch(sketch) }
+                )
             }
         )
         binding.sketchesRecyclerView.layoutManager = GridLayoutManager(this, 2)

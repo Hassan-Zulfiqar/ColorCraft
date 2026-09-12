@@ -21,12 +21,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
 import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityDrawingBinding
 import com.hassan.colorcraft.ui.coloring.ColorSwatchAdapter
+import com.hassan.colorcraft.ui.common.AppConfirmDialog
 import com.hassan.colorcraft.ui.common.ColorPickerBottomSheet
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -93,12 +93,6 @@ class DrawingActivity : AppCompatActivity() {
             )
         )
 
-        if (!sketchIdPresent) {
-            canvasView.loadBitmap(null)
-            binding.drawingTitleInput.setText("Untitled Sketch")
-            binding.drawingTitleInput.selectAll()
-        }
-
         swatchAdapter = ColorSwatchAdapter(viewModel.swatchColors) { color ->
             viewModel.selectColor(color)
         }
@@ -114,6 +108,12 @@ class DrawingActivity : AppCompatActivity() {
             } else {
                 isDirty = true
             }
+        }
+
+        if (!sketchIdPresent) {
+            canvasView.loadBitmap(null)
+            binding.drawingTitleInput.setText("Untitled Sketch")
+            binding.drawingTitleInput.selectAll()
         }
 
         viewModel.canvasBitmap.observe(this) { bitmap ->
@@ -172,12 +172,16 @@ class DrawingActivity : AppCompatActivity() {
         }
 
         binding.clearCanvasButton.setOnClickListener {
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Clear Drawing?")
-                .setMessage("This will erase everything on this canvas. This can't be undone.")
-                .setPositiveButton("Clear") { _, _ -> canvasView.clearCanvas() }
-                .setNegativeButton("Cancel", null)
-                .show()
+            AppConfirmDialog.show(
+                context = this,
+                iconRes = R.drawable.ic_warning_dialog,
+                title = "Clear Drawing?",
+                message = "This will erase everything on this canvas. This can't be undone.",
+                positiveText = "Cancel",
+                onPositiveClick = {},
+                destructiveText = "Clear",
+                onDestructiveClick = { canvasView.clearCanvas() }
+            )
         }
 
         binding.saveButton.setOnClickListener {
@@ -197,10 +201,13 @@ class DrawingActivity : AppCompatActivity() {
             return
         }
 
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Unsaved Changes")
-            .setMessage("You have unsaved drawing changes. Would you like to save before leaving?")
-            .setPositiveButton("Save & Exit") { _, _ ->
+        AppConfirmDialog.show(
+            context = this,
+            iconRes = R.drawable.ic_save_dialog,
+            title = "Unsaved Changes",
+            message = "You have unsaved drawing changes. Would you like to save before leaving?",
+            positiveText = "Save & Exit",
+            onPositiveClick = {
                 val bitmap = canvasView.getCurrentBitmap()
                 if (bitmap == null) {
                     finish()
@@ -210,20 +217,26 @@ class DrawingActivity : AppCompatActivity() {
                         finish()
                     }
                 }
-            }
-            .setNegativeButton("Discard & Exit") { _, _ -> finish() }
-            .setNeutralButton("Cancel") { dialog, _ -> dialog.dismiss() }
-            .show()
+            },
+            negativeText = "Cancel",
+            onNegativeClick = {},
+            destructiveText = "Discard & Exit",
+            onDestructiveClick = { finish() }
+        )
     }
 
     private fun showSaveDialog(bitmap: Bitmap, onSaveFlowComplete: () -> Unit = {}) {
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Save Drawing")
-            .setMessage("Save a copy to your device's gallery, or just keep your progress inside the app?")
-            .setPositiveButton("Save to Gallery") { _, _ ->
+        AppConfirmDialog.show(
+            context = this,
+            iconRes = R.drawable.ic_save_dialog,
+            title = "Save Drawing",
+            message = "Save a copy to your device's gallery, or just keep your progress inside the app?",
+            positiveText = "Save to Gallery",
+            onPositiveClick = {
                 saveWithGalleryExport(bitmap, onSaveFlowComplete)
-            }
-            .setNegativeButton("Just Save Progress") { _, _ ->
+            },
+            negativeText = "Just Save Progress",
+            onNegativeClick = {
                 viewModel.saveSketch(bitmap, currentSketchId, currentTitleOrDefault(), false) { newId, shareableUri, _ ->
                     currentSketchId = newId
                     isDirty = false
@@ -231,7 +244,7 @@ class DrawingActivity : AppCompatActivity() {
                     onSaveFlowComplete()
                 }
             }
-            .show()
+        )
     }
 
     private fun saveWithGalleryExport(bitmap: Bitmap, onComplete: () -> Unit = {}) {

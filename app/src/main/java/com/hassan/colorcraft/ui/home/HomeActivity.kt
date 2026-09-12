@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityHomeBinding
 import com.hassan.colorcraft.ui.coloring.ColoringActivity
+import com.hassan.colorcraft.ui.common.AppConfirmDialog
 import com.hassan.colorcraft.ui.drawing.DrawingGalleryActivity
 import com.hassan.colorcraft.ui.library.LibraryActivity
 import com.hassan.colorcraft.ui.settings.SettingsActivity
@@ -61,11 +61,15 @@ class HomeActivity : AppCompatActivity() {
             return
         }
 
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Exit ColorCraft?")
-            .setMessage("Are you sure you want to exit the app?")
-            .setPositiveButton("Exit") { _, _ -> finish() }
-            .setNegativeButton("Cancel", null)
-            .show()
+        AppConfirmDialog.show(
+            context = this,
+            iconRes = R.drawable.ic_exit_dialog,
+            title = "Exit ColorCraft?",
+            message = "Are you sure you want to exit the app?",
+            positiveText = "Cancel",
+            onPositiveClick = {},
+            destructiveText = "Exit",
+            onDestructiveClick = { finish() }
+        )
     }
 }
