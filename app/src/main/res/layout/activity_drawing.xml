@@ -133,14 +133,13 @@
         android:id="@+id/canvas_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/spacing_md"
-        android:layout_marginTop="@dimen/spacing_lg"
-        android:layout_marginEnd="@dimen/spacing_md"
+        android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginEnd="@dimen/spacing_sm"
         app:cardBackgroundColor="@color/color_surface"
         app:cardCornerRadius="@dimen/corner_radius_large"
         app:cardElevation="3dp"
-        app:layout_constraintBottom_toTopOf="@id/tool_brush_button"
-        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toTopOf="@id/brush_size_slider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back_button">
@@ -151,186 +150,134 @@
             android:layout_height="match_parent" />
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/tool_brush_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_md"
-        android:layout_marginTop="@dimen/spacing_lg"
-        android:fontFamily="@font/inter"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:paddingStart="@dimen/spacing_md"
-        android:paddingEnd="@dimen/spacing_md"
-        android:paddingTop="@dimen/spacing_sm"
-        android:paddingBottom="@dimen/spacing_sm"
-        android:text="@string/tool_brush_label"
-        android:textColor="@color/color_white"
-        android:textSize="13sp"
-        app:backgroundTint="@color/color_primary_start"
-        app:cornerRadius="100dp"
-        app:icon="@drawable/ic_brush"
-        app:iconGravity="textStart"
-        app:iconPadding="@dimen/spacing_xs"
-        app:iconSize="18dp"
-        app:iconTint="@color/color_white"
-        app:strokeWidth="1dp"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tool_pencil_button"
-        app:layout_constraintTop_toBottomOf="@id/canvas_card" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/tool_pencil_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_sm"
-        android:fontFamily="@font/inter"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:paddingStart="@dimen/spacing_md"
-        android:paddingEnd="@dimen/spacing_md"
-        android:paddingTop="@dimen/spacing_sm"
-        android:paddingBottom="@dimen/spacing_sm"
-        android:text="@string/tool_pencil_label"
-        android:textColor="@color/color_text_primary"
-        android:textSize="13sp"
-        app:backgroundTint="@color/color_surface_alt"
-        app:cornerRadius="100dp"
-        app:icon="@drawable/ic_pencil"
-        app:iconGravity="textStart"
-        app:iconPadding="@dimen/spacing_xs"
-        app:iconSize="18dp"
-        app:iconTint="@color/color_text_primary"
-        app:strokeWidth="1dp"
-        app:layout_constraintStart_toEndOf="@id/tool_brush_button"
-        app:layout_constraintEnd_toStartOf="@id/tool_eraser_button"
-        app:layout_constraintTop_toTopOf="@id/tool_brush_button" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/tool_eraser_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_sm"
-        android:layout_marginEnd="@dimen/spacing_md"
-        android:fontFamily="@font/inter"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:paddingStart="@dimen/spacing_md"
-        android:paddingEnd="@dimen/spacing_md"
-        android:paddingTop="@dimen/spacing_sm"
-        android:paddingBottom="@dimen/spacing_sm"
-        android:text="@string/tool_eraser_label"
-        android:textColor="@color/color_text_primary"
-        android:textSize="13sp"
-        app:backgroundTint="@color/color_surface_alt"
-        app:cornerRadius="100dp"
-        app:icon="@drawable/ic_eraser"
-        app:iconGravity="textStart"
-        app:iconPadding="@dimen/spacing_xs"
-        app:iconSize="18dp"
-        app:iconTint="@color/color_text_secondary"
-        app:strokeWidth="1dp"
-        app:layout_constraintStart_toEndOf="@id/tool_pencil_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tool_brush_button" />
-
-    <TextView
-        android:id="@+id/size_label_text"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tool_row_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_md"
-        android:fontFamily="@font/inter"
-        android:letterSpacing="0.05"
-        android:text="@string/size_label"
-        android:textColor="@color/color_text_secondary"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/brush_size_slider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/brush_size_slider" />
-
-    <ImageView
-        android:id="@+id/brush_size_preview"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="@dimen/spacing_md"
-        android:background="@drawable/shape_circle_solid"
-        android:backgroundTint="@color/color_text_primary"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toBottomOf="@id/brush_size_slider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/brush_size_slider" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/brush_size_slider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_sm"
         android:layout_marginStart="@dimen/spacing_sm"
+        android:layout_marginTop="@dimen/spacing_sm"
         android:layout_marginEnd="@dimen/spacing_sm"
         android:valueFrom="1"
         android:valueTo="50"
-        app:layout_constraintEnd_toStartOf="@id/brush_size_preview"
-        app:layout_constraintStart_toEndOf="@id/size_label_text"
-        app:layout_constraintTop_toBottomOf="@id/tool_brush_button"
+        app:layout_constraintEnd_toStartOf="@id/tool_row_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/canvas_card"
         app:thumbColor="@color/color_primary_start"
         app:trackColorActive="@color/color_primary_start"
         app:trackColorInactive="@color/color_surface_alt"
         tools:value="14" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/open_color_picker_button"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="@dimen/spacing_md"
-        android:layout_marginTop="@dimen/spacing_md"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="18dp"
-        app:cardElevation="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/brush_size_slider">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/gradient_primary"
-            android:padding="8dp"
-            android:contentDescription="@string/cd_open_color_picker"
-            android:src="@drawable/ic_add" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/color_swatch_recycler_view"
+    <HorizontalScrollView
+        android:id="@+id/tool_strip_scroll_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_sm"
-        android:layout_marginEnd="@dimen/spacing_md"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="@id/open_color_picker_button"
+        android:layout_marginEnd="@dimen/spacing_sm"
+        android:paddingVertical="@dimen/spacing_sm"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/open_color_picker_button"
-        app:layout_constraintTop_toTopOf="@id/open_color_picker_button"
-        tools:itemCount="8"
-        tools:listitem="@layout/item_color_swatch" />
+        app:layout_constraintStart_toEndOf="@id/tool_row_guideline"
+        app:layout_constraintTop_toTopOf="@id/brush_size_slider">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tool_brush_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="4dp"
+                app:backgroundTint="@color/color_primary_start"
+                app:cornerRadius="100dp"
+                app:icon="@drawable/ic_brush"
+                app:iconSize="32dp"
+                app:iconTint="@color/color_white"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tool_pencil_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:gravity="center"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="4dp"
+                app:backgroundTint="@color/color_surface_alt"
+                app:cornerRadius="100dp"
+                app:icon="@drawable/ic_pencil"
+                app:iconPadding="0dp"
+                app:iconSize="32dp"
+                app:iconTint="@color/color_text_primary"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tool_eraser_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:gravity="center"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="4dp"
+                app:backgroundTint="@color/color_surface_alt"
+                app:cornerRadius="100dp"
+                app:icon="@drawable/ic_eraser"
+                app:iconPadding="0dp"
+                app:iconSize="32dp"
+                app:iconTint="@color/color_text_secondary"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/open_color_picker_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:layout_gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_primary"
+                    android:padding="8dp"
+                    android:contentDescription="@string/cd_open_color_picker"
+                    android:src="@drawable/ic_add" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/save_button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="@dimen/spacing_md"
-        android:layout_marginTop="@dimen/spacing_lg"
-        android:layout_marginBottom="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginBottom="12dp"
         android:clickable="true"
         android:focusable="true"
         app:cardBackgroundColor="@android:color/transparent"
@@ -338,11 +285,8 @@
         app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/clear_canvas_button"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/color_swatch_recycler_view"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.68">
+        app:layout_constraintTop_toBottomOf="@id/brush_size_slider">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -350,8 +294,8 @@
             android:background="@drawable/gradient_primary"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/spacing_md"
-            android:paddingBottom="@dimen/spacing_md">
+            android:paddingTop="@dimen/spacing_sm"
+            android:paddingBottom="@dimen/spacing_sm">
 
             <ImageView
                 android:layout_width="20dp"
@@ -373,9 +317,10 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/clear_canvas_button"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="@dimen/spacing_md"
+        android:layout_marginStart="@dimen/spacing_md"
         android:clickable="true"
         android:focusable="true"
         app:cardBackgroundColor="@color/color_surface"
@@ -384,7 +329,6 @@
         app:strokeColor="@color/color_error"
         app:strokeWidth="1.5dp"
         app:layout_constraintBottom_toBottomOf="@id/save_button"
-        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/save_button"
         app:layout_constraintTop_toTopOf="@id/save_button">
@@ -392,7 +336,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="14dp"
+            android:padding="8dp"
             android:contentDescription="@string/cd_clear_canvas"
             android:src="@drawable/ic_trash" />
     </com.google.android.material.card.MaterialCardView>

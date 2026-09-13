@@ -21,6 +21,13 @@ class ColorPickerBottomSheet : BottomSheetDialogFragment() {
     private lateinit var binding: BottomSheetColorPickerBinding
     private val colorPickerViewModel: ColorPickerViewModel by viewModel()
     private lateinit var recentColorsAdapter: ColorSwatchAdapter
+    private lateinit var fixedSwatchAdapter: ColorSwatchAdapter
+
+    private val fixedSwatchColors: List<Int> = listOf(
+        "#EF4444", "#F97316", "#F59E0B", "#EAB308", "#84CC16", "#22C55E",
+        "#14B8A6", "#06B6D4", "#3B82F6", "#6366F1", "#8B5CF6", "#EC4899",
+        "#92400E", "#1C1B1F"
+    ).map { Color.parseColor(it) }
 
     private var currentHue: Float = 0f
     private var currentSaturation: Float = 0f
@@ -92,6 +99,21 @@ class ColorPickerBottomSheet : BottomSheetDialogFragment() {
             applySliderValue(currentValue)
             binding.hexInputLayout.boxStrokeColor = parsedColor
         }
+
+        fixedSwatchAdapter = ColorSwatchAdapter(fixedSwatchColors) { color ->
+            val hsv = FloatArray(3)
+            Color.colorToHSV(color, hsv)
+            currentHue = hsv[0]
+            currentSaturation = hsv[1]
+            currentValue = hsv[2]
+
+            binding.hsvColorView.setSelection(currentHue, currentSaturation)
+            applySliderValue(currentValue)
+            updatePreviewAndHex()
+        }
+        binding.fixedSwatchRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.fixedSwatchRecyclerView.adapter = fixedSwatchAdapter
 
         recentColorsAdapter = ColorSwatchAdapter(emptyList()) { color ->
             val hsv = FloatArray(3)

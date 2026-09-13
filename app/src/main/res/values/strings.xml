@@ -57,4 +57,6 @@
     <string name="terms_of_use_label">Terms of Use</string>
     <string name="app_version_label">App Version</string>
     <string name="footer_studio_text">ColorCraft Studio</string>
+    <string name="colors_heading">Colors</string>
+    <string name="recent_colors_heading">Recently Used</string>
 </resources>

@@ -19,13 +19,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
 import com.hassan.colorcraft.R
 import com.hassan.colorcraft.databinding.ActivityDrawingBinding
-import com.hassan.colorcraft.ui.coloring.ColorSwatchAdapter
 import com.hassan.colorcraft.ui.common.AppConfirmDialog
 import com.hassan.colorcraft.ui.common.ColorPickerBottomSheet
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,7 +32,6 @@ class DrawingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDrawingBinding
     private val viewModel: DrawingViewModel by viewModel()
     private lateinit var canvasView: DrawingCanvasView
-    private lateinit var swatchAdapter: ColorSwatchAdapter
     private var currentSketchId: Long? = null
     private var isDirty: Boolean = false
     private var isFirstUndoRedoCallback: Boolean = true
@@ -93,13 +89,6 @@ class DrawingActivity : AppCompatActivity() {
             )
         )
 
-        swatchAdapter = ColorSwatchAdapter(viewModel.swatchColors) { color ->
-            viewModel.selectColor(color)
-        }
-        binding.colorSwatchRecyclerView.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.colorSwatchRecyclerView.adapter = swatchAdapter
-
         canvasView.onUndoRedoStateChanged = { canUndo, canRedo ->
             binding.undoButton.isEnabled = canUndo
             binding.redoButton.isEnabled = canRedo
@@ -146,7 +135,6 @@ class DrawingActivity : AppCompatActivity() {
 
         viewModel.currentColor.observe(this) { color ->
             canvasView.setStrokeColor(color)
-            swatchAdapter.setSelectedColor(color)
         }
 
         binding.backButton.setOnClickListener { handleBackPress() }
@@ -158,13 +146,11 @@ class DrawingActivity : AppCompatActivity() {
         binding.toolEraserButton.setOnClickListener { selectTool(DrawTool.ERASER) }
         selectTool(DrawTool.BRUSH)
 
-        binding.brushSizeSlider.addOnChangeListener { slider, value, fromUser ->
+        binding.brushSizeSlider.addOnChangeListener { _, value, fromUser ->
             if (!fromUser) return@addOnChangeListener
             canvasView.setStrokeWidth(value)
-            updateBrushSizePreview(slider, value)
         }
         canvasView.setStrokeWidth(binding.brushSizeSlider.value)
-        updateBrushSizePreview(binding.brushSizeSlider, binding.brushSizeSlider.value)
 
         binding.openColorPickerButton.setOnClickListener {
             ColorPickerBottomSheet.newInstance(viewModel.currentColor.value ?: Color.RED)
@@ -333,22 +319,8 @@ class DrawingActivity : AppCompatActivity() {
         button.iconTint = ColorStateList.valueOf(contentColor)
     }
 
-    private fun updateBrushSizePreview(slider: Slider, value: Float) {
-        val range = slider.valueTo - slider.valueFrom
-        val fraction = if (range == 0f) 0f else (value - slider.valueFrom) / range
-        val previewSizeDp = MIN_PREVIEW_SIZE_DP + fraction * (MAX_PREVIEW_SIZE_DP - MIN_PREVIEW_SIZE_DP)
-        val previewSizePx = (previewSizeDp * resources.displayMetrics.density).toInt()
-
-        val layoutParams = binding.brushSizePreview.layoutParams
-        layoutParams.width = previewSizePx
-        layoutParams.height = previewSizePx
-        binding.brushSizePreview.layoutParams = layoutParams
-    }
-
     companion object {
         private const val EXTRA_SKETCH_ID = "extra_sketch_id"
-        private const val MIN_PREVIEW_SIZE_DP = 8f
-        private const val MAX_PREVIEW_SIZE_DP = 32f
         private const val TOOL_BUTTON_CORNER_RADIUS_DP = 100f
         private const val TITLE_SAVE_DEBOUNCE_MS = 600L
 

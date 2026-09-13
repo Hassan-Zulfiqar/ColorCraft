@@ -160,11 +160,24 @@
             tools:text="FB7185" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/colors_heading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:fontFamily="@font/inter"
+        android:text="@string/colors_heading"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_color_preview" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recent_colors_recycler_view"
+        android:id="@+id/fixed_swatch_recycler_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_sm"
         android:layout_marginStart="@dimen/spacing_lg"
         android:layout_marginEnd="@dimen/spacing_lg"
         android:clipToPadding="false"
@@ -175,7 +188,39 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/current_color_preview"
+        app:layout_constraintTop_toBottomOf="@id/colors_heading_text"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_color_swatch" />
+
+    <TextView
+        android:id="@+id/recent_colors_heading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:fontFamily="@font/inter"
+        android:text="@string/recent_colors_heading"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fixed_swatch_recycler_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recent_colors_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/spacing_md"
+        android:paddingEnd="@dimen/spacing_md"
+        android:background="@color/color_surface_alt"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recent_colors_heading_text"
         tools:itemCount="6"
         tools:listitem="@layout/item_color_swatch" />
 

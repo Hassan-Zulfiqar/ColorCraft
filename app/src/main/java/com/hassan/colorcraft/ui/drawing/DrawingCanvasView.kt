@@ -14,6 +14,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import kotlin.math.hypot
+import kotlin.math.max
 import kotlin.math.min
 
 enum class DrawTool { BRUSH, PENCIL, ERASER }
@@ -47,6 +48,8 @@ class DrawingCanvasView @JvmOverloads constructor(
 
     var onUndoRedoStateChanged: ((canUndo: Boolean, canRedo: Boolean) -> Unit)? = null
 
+    private var pendingBlankBitmapCreation = false
+
     init {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         rebuildToolPaint()
@@ -54,7 +57,13 @@ class DrawingCanvasView @JvmOverloads constructor(
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        applyFitToViewMatrix()
+        if (pendingBlankBitmapCreation && w > 0 && h > 0) {
+            pendingBlankBitmapCreation = false
+            bitmap = createBlankBitmapForCurrentSize()
+            finishLoadBitmap()
+        } else {
+            applyFitToViewMatrix()
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -132,8 +141,18 @@ class DrawingCanvasView @JvmOverloads constructor(
     }
 
     fun loadBitmap(bitmap: Bitmap?) {
-        this.bitmap = bitmap?.copy(bitmap.config ?: Bitmap.Config.ARGB_8888, true)
-            ?: createBlankBitmap(DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE)
+        if (bitmap != null) {
+            this.bitmap = bitmap.copy(bitmap.config ?: Bitmap.Config.ARGB_8888, true)
+            finishLoadBitmap()
+        } else if (width > 0 && height > 0) {
+            this.bitmap = createBlankBitmapForCurrentSize()
+            finishLoadBitmap()
+        } else {
+            pendingBlankBitmapCreation = true
+        }
+    }
+
+    private fun finishLoadBitmap() {
         undoStack.clear()
         redoStack.clear()
         currentStrokePath = null
@@ -144,6 +163,18 @@ class DrawingCanvasView @JvmOverloads constructor(
         }
         notifyUndoRedoState()
         invalidate()
+    }
+
+    private fun createBlankBitmapForCurrentSize(): Bitmap {
+        var w = width
+        var h = height
+        val largerEdge = max(w, h).toFloat()
+        if (largerEdge > MAX_CANVAS_EDGE_PX) {
+            val scaleFactor = MAX_CANVAS_EDGE_PX / largerEdge
+            w = (w * scaleFactor).toInt()
+            h = (h * scaleFactor).toInt()
+        }
+        return createBlankBitmap(w, h)
     }
 
     fun setTool(tool: DrawTool) {
@@ -278,7 +309,7 @@ class DrawingCanvasView @JvmOverloads constructor(
 
     companion object {
         private const val MAX_UNDO_STACK_SIZE = 15
-        private const val DEFAULT_CANVAS_SIZE = 1024
+        private const val MAX_CANVAS_EDGE_PX = 1600
         private const val DEFAULT_STROKE_WIDTH = 12f
     }
 }
