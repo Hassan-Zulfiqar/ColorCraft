@@ -1,0 +1,131 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="240dp"
+    android:height="220dp"
+    android:viewportWidth="240"
+    android:viewportHeight="220">
+
+    <!-- Flowing ribbon / creative doodle waves -->
+    <path
+        android:pathData="M40,140 C60,70 110,50 140,100 C160,135 195,110 205,75"
+        android:strokeColor="#7F5CFA"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeAlpha="0.85"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M45,155 C75,185 120,170 145,140 C170,110 190,150 210,145"
+        android:strokeColor="#FF6FB0"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeAlpha="0.9"
+        android:fillColor="#00000000" />
+
+    <!-- Blue dashed arc, split into discrete dash segments: VectorDrawable has no stroke-dasharray -->
+    <path
+        android:pathData="M70,65 C73,60 77,57 81.8,56.8"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M94.6,53.7 C99,53.5 103,53.6 107.6,53.9"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M120.4,55.6 C124,56.1 128,56.6 132.6,57.3"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M141,56.6 C145,56.1 148,55.6 150,55"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- Doodle star / spiral accent -->
+    <path
+        android:pathData="M85,105 Q92,98 98,105 T110,105"
+        android:strokeColor="#FBBF24"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- Small dot accents -->
+    <path
+        android:pathData="M167,70 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"
+        android:fillColor="#A855F7" />
+    <path
+        android:pathData="M62.5,120 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"
+        android:fillColor="#EC4899" />
+
+    <!-- Floating paint splatters -->
+    <path
+        android:pathData="M51,85 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+        android:fillColor="#FF6FB0"
+        android:fillAlpha="0.75" />
+    <path
+        android:pathData="M180,130 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"
+        android:fillColor="#7F5CFA"
+        android:fillAlpha="0.75" />
+    <path
+        android:pathData="M126.5,180 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"
+        android:fillColor="#38BDF8"
+        android:fillAlpha="0.75" />
+
+    <!-- Stylized artist brush, angled diagonally: translate(110,45) rotate(35) -->
+    <group
+        android:pivotX="0"
+        android:pivotY="0"
+        android:rotation="35"
+        android:translateX="110"
+        android:translateY="45">
+
+        <!-- Handle: rounded/capsule shape with 3-stop gradient fill -->
+        <path android:pathData="M6,0 A6,6 0 0,1 12,6 L12,84 A6,6 0 0,1 6,90 A6,6 0 0,1 0,84 L0,6 A6,6 0 0,1 6,0 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="0"
+                    android:startY="0"
+                    android:endX="12"
+                    android:endY="0"
+                    android:startColor="#4B5563"
+                    android:centerColor="#1F2937"
+                    android:endColor="#374151" />
+            </aapt:attr>
+        </path>
+
+        <!-- Silver ferrule -->
+        <path
+            android:pathData="M2,86 L10,86 A3,3 0 0,1 13,89 L13,103 A3,3 0 0,1 10,106 L2,106 A3,3 0 0,1 -1,103 L-1,89 A3,3 0 0,1 2,86 Z"
+            android:fillColor="#D1D5DB"
+            android:strokeColor="#9CA3AF"
+            android:strokeWidth="1" />
+        <path
+            android:pathData="M0,96 L12,96"
+            android:strokeColor="#9CA3AF"
+            android:strokeWidth="1"
+            android:fillColor="#00000000" />
+
+        <!-- Bristles with wet tip -->
+        <path
+            android:pathData="M-1,106 C-2,125 4,136 6,142 C8,136 14,125 13,106 Z"
+            android:fillColor="#6366F1" />
+        <path
+            android:pathData="M1,126 C2,134 5,140 6,142 C7,140 10,134 11,126 Z"
+            android:fillColor="#FF6FB0" />
+
+        <!-- Drop of fresh paint leaving the tip -->
+        <path
+            android:pathData="M2.5,149 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0"
+            android:fillColor="#FF6FB0" />
+    </group>
+
+</vector>

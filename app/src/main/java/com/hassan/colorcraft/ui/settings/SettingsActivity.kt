@@ -84,11 +84,11 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         binding.privacyPolicyRow.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://example.com/privacy")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://colorcraft-legal.blogspot.com/p/privacy-policy.html")))
         }
 
         binding.termsOfUseRow.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://example.com/terms")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://colorcraft-legal.blogspot.com/p/terms-of-use.html")))
         }
     }
 }

@@ -61,6 +61,9 @@
             android:name=".ui.settings.SettingsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

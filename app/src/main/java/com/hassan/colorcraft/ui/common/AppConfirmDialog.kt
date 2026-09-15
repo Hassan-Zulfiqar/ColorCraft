@@ -20,7 +20,8 @@ object AppConfirmDialog {
         negativeText: String? = null,
         onNegativeClick: (() -> Unit)? = null,
         destructiveText: String? = null,
-        onDestructiveClick: (() -> Unit)? = null
+        onDestructiveClick: (() -> Unit)? = null,
+        showCloseButton: Boolean = false
     ): Dialog {
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -40,6 +41,7 @@ object AppConfirmDialog {
             dialog.dismiss()
         }
 
+        binding.dialogCloseButton.visibility = if (showCloseButton) View.VISIBLE else View.GONE
         binding.dialogCloseButton.setOnClickListener {
             dialog.dismiss()
         }

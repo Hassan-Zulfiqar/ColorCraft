@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.16"
+        android:background="@drawable/gradient_primary_card" />
+
+    <View
+        android:id="@+id/dot_accent_start"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:background="@drawable/shape_circle_solid"
+        android:backgroundTint="@color/color_primary_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/dot_accent_end"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_lg"
+        android:background="@drawable/shape_circle_solid"
+        android:backgroundTint="@color/color_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pen_squiggle_image"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_pen_squiggle_illustration"
+        app:layout_constraintBottom_toTopOf="@id/infinite_canvas_badge_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/infinite_canvas_badge_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginBottom="@dimen/spacing_lg"
+        android:background="@drawable/bg_pill_solid_white"
+        android:backgroundTint="@color/color_surface"
+        android:elevation="2dp"
+        android:fontFamily="@font/inter"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_sm"
+        android:paddingEnd="@dimen/spacing_sm"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="@string/infinite_canvas_brushes_label"
+        android:textColor="@color/color_text_primary"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

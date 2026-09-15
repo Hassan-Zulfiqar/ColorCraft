@@ -18,6 +18,7 @@ import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
@@ -135,6 +136,7 @@ class DrawingActivity : AppCompatActivity() {
 
         viewModel.currentColor.observe(this) { color ->
             canvasView.setStrokeColor(color)
+            updateColorPickerButtonAppearance(color)
         }
 
         binding.backButton.setOnClickListener { handleBackPress() }
@@ -229,7 +231,8 @@ class DrawingActivity : AppCompatActivity() {
                     showSnackbarWithShareAction("Progress saved", shareableUri)
                     onSaveFlowComplete()
                 }
-            }
+            },
+            showCloseButton = true
         )
     }
 
@@ -285,6 +288,14 @@ class DrawingActivity : AppCompatActivity() {
     private fun currentTitleOrDefault(): String {
         val typedTitle = binding.drawingTitleInput.text?.toString()?.trim()
         return if (typedTitle.isNullOrEmpty()) "Untitled Sketch" else typedTitle
+    }
+
+    private fun updateColorPickerButtonAppearance(color: Int) {
+        binding.openColorPickerButton.setCardBackgroundColor(color)
+
+        val luminance = (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255.0
+        val iconTint = if (luminance < 0.6) Color.WHITE else getColor(R.color.color_text_primary)
+        ImageViewCompat.setImageTintList(binding.openColorPickerIcon, ColorStateList.valueOf(iconTint))
     }
 
     private fun selectTool(tool: DrawTool) {

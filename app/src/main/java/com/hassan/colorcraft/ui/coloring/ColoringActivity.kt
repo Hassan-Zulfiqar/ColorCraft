@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
@@ -14,6 +15,7 @@ import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.hassan.colorcraft.R
@@ -123,6 +125,7 @@ class ColoringActivity : AppCompatActivity() {
         viewModel.currentFillColor.observe(this) { color ->
             canvasView.setFillColor(color)
             swatchAdapter.setSelectedColor(color)
+            updateColorPickerButtonAppearance(color)
         }
 
         binding.backButton.setOnClickListener { handleBackPress() }
@@ -199,7 +202,8 @@ class ColoringActivity : AppCompatActivity() {
                     showSnackbarWithShareAction("Progress saved", shareableUri)
                     onSaveFlowComplete()
                 }
-            }
+            },
+            showCloseButton = true
         )
     }
 
@@ -253,6 +257,14 @@ class ColoringActivity : AppCompatActivity() {
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
         startActivity(Intent.createChooser(intent, null))
+    }
+
+    private fun updateColorPickerButtonAppearance(color: Int) {
+        binding.openColorPickerButton.setCardBackgroundColor(color)
+
+        val luminance = (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255.0
+        val iconTint = if (luminance < 0.6) Color.WHITE else getColor(R.color.color_text_primary)
+        ImageViewCompat.setImageTintList(binding.openColorPickerIcon, ColorStateList.valueOf(iconTint))
     }
 
     companion object {

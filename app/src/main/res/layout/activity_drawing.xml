@@ -256,13 +256,15 @@
                 android:clickable="true"
                 android:focusable="true"
                 app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="18dp"
-                app:cardElevation="0dp">
+                app:cardCornerRadius="100dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/color_text_secondary"
+                app:strokeWidth="1dp">
 
                 <ImageView
+                    android:id="@+id/open_color_picker_icon"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/gradient_primary"
                     android:padding="8dp"
                     android:contentDescription="@string/cd_open_color_picker"
                     android:src="@drawable/ic_add" />

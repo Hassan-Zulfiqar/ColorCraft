@@ -59,4 +59,20 @@
     <string name="footer_studio_text">ColorCraft Studio</string>
     <string name="colors_heading">Colors</string>
     <string name="recent_colors_heading">Recently Used</string>
+    <string name="skip_button_text">Skip</string>
+    <string name="next_button_text">Next</string>
+    <string name="get_started_button_text">Get Started</string>
+    <string name="onboarding_title_1">Tap to Color Anything</string>
+    <string name="onboarding_subtitle_1">Pick a color, tap a region, watch it fill instantly.</string>
+    <string name="onboarding_title_2">Draw Freely, Your Way</string>
+    <string name="onboarding_subtitle_2">Blank canvas, real brushes, total creative freedom.</string>
+    <string name="onboarding_title_3">Save &amp; Share</string>
+    <string name="onboarding_subtitle_3">Build your own gallery of finished art. Save, and share your creations.</string>
+    <string name="tap_to_fill_label">Tap to Fill</string>
+    <string name="infinite_canvas_brushes_label">Infinite Canvas &amp; Brushes</string>
+    <string name="forest_owl_label">Forest Owl</string>
+    <string name="lotus_bloom_label">Lotus Bloom</string>
+    <string name="geo_fox_label">Geo Fox</string>
+    <string name="bunny_label">Bunny</string>
+    <string name="high_res_cloud_export_label">High-Res Cloud Export</string>
 </resources>

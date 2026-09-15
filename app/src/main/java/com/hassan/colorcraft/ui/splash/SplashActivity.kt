@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import com.hassan.colorcraft.ui.home.HomeActivity
 import com.hassan.colorcraft.databinding.ActivitySplashBinding
+import com.hassan.colorcraft.ui.onboarding.OnboardingActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : AppCompatActivity() {
@@ -30,7 +31,12 @@ class SplashActivity : AppCompatActivity() {
 
         viewModel.isReadyToNavigate.observe(this) { isReady ->
             if (isReady) {
-                startActivity(Intent(this, HomeActivity::class.java))
+                val destination = if (viewModel.hasSeenOnboarding.value == true) {
+                    HomeActivity::class.java
+                } else {
+                    OnboardingActivity::class.java
+                }
+                startActivity(Intent(this, destination))
                 finish()
             }
         }
